@@ -5,7 +5,7 @@
 // <will>
 // Constructor
 HashTableQuadratic::HashTableQuadratic(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets, false)
+	: HashTableBase(numberOfBuckets)
 {
 }
 

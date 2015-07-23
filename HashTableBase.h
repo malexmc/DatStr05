@@ -10,7 +10,7 @@ class HashTableBase
 public:
 	// <will>
 	// Constructor
-	HashTableBase(int numberOfBuckets, bool vectorFlag);
+	HashTableBase(int numberOfBuckets);
 
 	// <will>
 	// Destructor
@@ -47,9 +47,7 @@ protected:
 	vector<int>* buckets;
 	vector<bool>* bucketsFilledFlags;
 	
-	//<alex>
-	// Added vecBuckets to accommodate the vector<vector<int>> chaining case.
-	vector<vector<int> >* vecBuckets;
+
 };
 
 #endif

@@ -10,24 +10,12 @@ using namespace std;
 // <will>
 // Base class constructor. Instantiates the buckets vector<int> and 
 // bucketsFilledFlags vector<bool>. 
-//
-// <alex>
-// Added the vectorFlag to allow the constructor to construct the traditional
-// vector<int> buckets or the chaining cases' vector<vector<int>> buckets.
-HashTableBase::HashTableBase(int numberOfBuckets, bool vectorFlag)
+HashTableBase::HashTableBase(int numberOfBuckets)
 {
 	this->numberOfBuckets = numberOfBuckets;
 	this->entries = 0;
 
-    // <alex>
-    // Decides between the traditional vector<int> buckets or the 
-    // chaining cases' vector<vector<int>> buckets based on vectorFlags.
-    if(vectorFlag){
-    	vecBuckets = new vector<vector<int> >(numberOfBuckets);
-    }
-    else{
-	    buckets = new vector<int>(numberOfBuckets);
-	}
+  buckets = new vector<int>(numberOfBuckets);
 	
 	bucketsFilledFlags = new vector<bool>(numberOfBuckets);
 }
@@ -65,7 +53,7 @@ void HashTableBase::printTable()
 		}
 		else
 		{
-			cout << "---" << endl;
+			cout << "(Empty)" << endl;
 		}
 	}
 }

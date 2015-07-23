@@ -5,7 +5,7 @@
 // <will>
 // Constructor
 HashTableDoubleHash::HashTableDoubleHash(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets, false)
+	: HashTableBase(numberOfBuckets)
 {
 }
 

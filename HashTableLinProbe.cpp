@@ -4,7 +4,7 @@
 // <will>
 // Constructor
 HashTableLinProbe::HashTableLinProbe(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets, false)
+	: HashTableBase(numberOfBuckets)
 {
 }
 
