@@ -1,35 +1,34 @@
 //#include "stdafx.h"
-#include "HashTableLinProbe.h"
+#include "HashTableQuadratic.h"
 #include <iostream>
+
 // <will>
 // Constructor
-HashTableLinProbe::HashTableLinProbe(int numberOfBuckets)
+HashTableQuadratic::HashTableQuadratic(int numberOfBuckets)
 	: HashTableBase(numberOfBuckets)
 {
 }
 
-// <will>
-// Destructor
-HashTableLinProbe::~HashTableLinProbe(void)
-{
-}
 
 // <will>
 // Inserts a key into the hash table. Returns true if insertion
 // succeeded; false otherwise.
-bool HashTableLinProbe::insertKey(int key)
+bool HashTableQuadratic::insertKey(int key)
 {
 	// <will>
 	// get the bucket number for the key
-	cout << "beginning hash!";
-	int bucketNumber = HashTableBase::getHashForKey(key);
+	cout << "double hashing!" << endl; 
+	int bucketNumber = getHashForKey(key);
 
 	// <will>
 	// starting at the bucket number, keep iterating through the hash until we
 	// find an empty space
 	for (int ii = 0; ii < numberOfBuckets; ii++)
 	{
-		int bucket = (ii + bucketNumber) % numberOfBuckets;
+	    //<alex>
+	    // The quadratic "ii*ii" replaces the linear "ii" to make the
+	    // probing quadratic.
+		int bucket = ( (ii*ii) + bucketNumber) % numberOfBuckets;
 
 		// <will>
 		// if the key at this location is equal to the current key, break out early
@@ -54,3 +53,4 @@ bool HashTableLinProbe::insertKey(int key)
 	// code is checking our load ratio.
 	return false;
 }
+

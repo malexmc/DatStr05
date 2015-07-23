@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "HashTableBase.h"
 
 #include <iomanip>
@@ -72,6 +72,6 @@ int HashTableBase::getHashForKey(int key)
 	{
 		key += numberOfBuckets;
 	}
-
+    cout << key << " % " << numberOfBuckets << " = " << key%numberOfBuckets << endl;
 	return key % numberOfBuckets;
 }
