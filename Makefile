@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-c -Wall -ggdb -I.
 LDFLAGS=
-SOURCES= HashTable.cpp HashTableBase.cpp HashTableLinProbe.cpp HashTableDoubleHash.cpp HashTableQuadratic.cpp
+SOURCES= HashTable.cpp HashTableBase.cpp HashTableLinProbe.cpp HashTableDoubleHash.cpp HashTableQuadratic.cpp HashTableChaining.cpp
 EXECUTABLE=execute.out
 
 TESTS = IntVec_test.h

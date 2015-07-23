@@ -5,6 +5,7 @@
 #include "HashTableLinProbe.h"
 #include "HashTableDoubleHash.h"
 #include "HashTableQuadratic.h"
+#include "HashTableChaining.h"
 
 #include <iostream>
 #include <limits>
@@ -48,12 +49,14 @@ int main(int argc, char* argv[])
 	// based on the user input
 	HashTableBase* hashTable;
 	switch(collisionResolutionScheme){
-	    case 1: cout << "1" << endl; hashTable = new HashTableLinProbe(numberOfBuckets);
+	    case 1: hashTable = new HashTableLinProbe(numberOfBuckets);
 	            break;
-	    case 2: cout << "2" << endl; hashTable = new HashTableDoubleHash(numberOfBuckets);
+	    case 2: hashTable = new HashTableDoubleHash(numberOfBuckets);
 	            break;
-	    case 3: cout << "3" << endl; hashTable = new HashTableQuadratic(numberOfBuckets);
+	    case 3: hashTable = new HashTableQuadratic(numberOfBuckets);
 	            break;
+	    case 4: hashTable = new HashTableChaining(numberOfBuckets);
+                break;
 	}
 	
 	//HashTableBase* hashTable = new HashTableLinProbe(numberOfBuckets);

@@ -1,33 +1,46 @@
 //#include "stdafx.h"
-#include "HashTableQuadratic.h"
+#include "HashTableChaining.h"
 #include <iostream>
-
 // <will>
 // Constructor
-HashTableQuadratic::HashTableQuadratic(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets, false)
+HashTableChaining::HashTableChaining(int numberOfBuckets)
+	: HashTableBase(numberOfBuckets, true)
 {
 }
 
+// <will>
+// Destructor
+HashTableChaining::~HashTableChaining(void)
+{
+}
 
 // <will>
 // Inserts a key into the hash table. Returns true if insertion
 // succeeded; false otherwise.
-bool HashTableQuadratic::insertKey(int key)
+bool HashTableChaining::insertKey(int key)
 {
 	// <will>
 	// get the bucket number for the key
-	int bucketNumber = getHashForKey(key);
+	int bucketNumber = HashTableBase::getHashForKey(key);
 
-	// <will>
-	// starting at the bucket number, keep iterating through the hash until we
-	// find an empty space
+	// <alex>
+	// At the bucket number, if the vector is empty ,populate it with 
+	// the key. Otherwise, check the vector for the element, then 
+	// push_back if not found.
+	if ((*vecBuckets)[bucketNumber].size() == 0){
+	    cout << "Pingas" << endl;
+	    (*vecBuckets)[bucketNumber].push_back(key);
+        cout << "Pushed Back" << endl;
+	}
+	
+	else{
+	    
+	}
+	
+	/*
 	for (int ii = 0; ii < numberOfBuckets; ii++)
 	{
-	    //<alex>
-	    // The quadratic "ii*ii" replaces the linear "ii" to make the
-	    // probing quadratic.
-		int bucket = ( (ii*ii) + bucketNumber) % numberOfBuckets;
+		int bucket = (ii + bucketNumber) % numberOfBuckets;
 
 		// <will>
 		// if the key at this location is equal to the current key, break out early
@@ -46,10 +59,10 @@ bool HashTableQuadratic::insertKey(int key)
 			return true;
 		}
 	}
+	*/
 
 	// <will>
 	// If we got here, the hash table is full. This shouldn't ever happen if the calling
 	// code is checking our load ratio.
 	return false;
 }
-

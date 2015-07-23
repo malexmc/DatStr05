@@ -4,7 +4,7 @@
 // <will>
 // Constructor
 HashTableLinProbe::HashTableLinProbe(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets)
+	: HashTableBase(numberOfBuckets, false)
 {
 }
 
@@ -21,7 +21,6 @@ bool HashTableLinProbe::insertKey(int key)
 {
 	// <will>
 	// get the bucket number for the key
-	cout << "beginning hash!";
 	int bucketNumber = HashTableBase::getHashForKey(key);
 
 	// <will>

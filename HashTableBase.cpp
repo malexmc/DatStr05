@@ -9,15 +9,30 @@ using namespace std;
 
 // <will>
 // Base class constructor. Instantiates the buckets vector<int> and 
-// bucketsFilledFlags vector<bool>.
-HashTableBase::HashTableBase(int numberOfBuckets)
+// bucketsFilledFlags vector<bool>. 
+//
+// <alex>
+// Added the vectorFlag to allow the constructor to construct the traditional
+// vector<int> buckets or the chaining cases' vector<vector<int>> buckets.
+HashTableBase::HashTableBase(int numberOfBuckets, bool vectorFlag)
 {
 	this->numberOfBuckets = numberOfBuckets;
 	this->entries = 0;
 
-	buckets = new vector<int>(numberOfBuckets);
+    // <alex>
+    // Decides between the traditional vector<int> buckets or the 
+    // chaining cases' vector<vector<int>> buckets based on vectorFlags.
+    if(vectorFlag){
+    	vecBuckets = new vector<vector<int> >(numberOfBuckets);
+    }
+    else{
+	    buckets = new vector<int>(numberOfBuckets);
+	}
+	
 	bucketsFilledFlags = new vector<bool>(numberOfBuckets);
 }
+
+
 
 // <will>
 // Base class desctructor. Deletes the buckets vector<int> and the

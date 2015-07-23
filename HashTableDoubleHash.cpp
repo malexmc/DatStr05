@@ -5,7 +5,7 @@
 // <will>
 // Constructor
 HashTableDoubleHash::HashTableDoubleHash(int numberOfBuckets)
-	: HashTableBase(numberOfBuckets)
+	: HashTableBase(numberOfBuckets, false)
 {
 }
 
@@ -17,7 +17,6 @@ bool HashTableDoubleHash::insertKey(int key)
 {
 	// <will>
 	// get the bucket number for the key
-	cout << "double hashing!" << endl; 
 	int bucketNumber = getDoubleHashForKey(key);
 
 	// <will>
