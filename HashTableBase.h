@@ -28,6 +28,8 @@ public:
 	// <will>
 	// Gets the current load ratio.
 	double getLoadRatio();
+        
+        static int totalComparisons;
 
 protected:
 	// <will>
