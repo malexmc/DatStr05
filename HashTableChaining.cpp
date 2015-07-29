@@ -30,16 +30,19 @@ bool HashTableChaining::insertKey(int key)
 	// At the bucket number, if the vector is empty ,populate it with 
 	// the key. Otherwise, check the vector for the element, then 
 	// push_back if not found.
+        HashTableBase::totalComparisons++;
 	if ((*vecBuckets)[bucketNumber].size() == 0){
-	    cout << "Pingas" << endl;
+            
+	    //cout << "Pingas" << endl;
 	    (*vecBuckets)[bucketNumber].push_back(key);
-      cout << "Pushed Back" << endl;
+      //cout << "Pushed Back" << endl;
       entries++;
       return true;
 	}
 	
 	else{
 	  for( unsigned int ii = 0; ii < (*vecBuckets)[bucketNumber].size(); ii++){
+      HashTableBase::totalComparisons++;
       if((*vecBuckets)[bucketNumber][ii] == key){
         return false;
       }
