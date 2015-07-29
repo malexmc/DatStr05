@@ -31,6 +31,7 @@ bool HashTableQuadratic::insertKey(int key)
 
 		// <will>
 		// if the key at this location is equal to the current key, break out early
+                HashTableBase::totalComparisons++;
 		if ((*bucketsFilledFlags)[bucket] && (*buckets)[bucket] == key)
 		{
 			return false;
@@ -38,6 +39,7 @@ bool HashTableQuadratic::insertKey(int key)
 
 		// <will>
 		// insert the value here if possible
+                HashTableBase::totalComparisons++;
 		if ((*bucketsFilledFlags)[bucket] == false)
 		{
 			(*bucketsFilledFlags)[bucket] = true;
