@@ -75,6 +75,8 @@ int HashTableBase::getHashForKey(int key)
 	{
 		key += numberOfBuckets;
 	}
-    cout << key << " % " << numberOfBuckets << " = " << key%numberOfBuckets << endl;
+    //cout << key << " % " << numberOfBuckets << " = " << key%numberOfBuckets << endl;
 	return key % numberOfBuckets;
 }
+
+int HashTableBase::totalComparisons = 0;
