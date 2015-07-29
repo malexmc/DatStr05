@@ -46,6 +46,8 @@ protected:
 	// the value in buckets is valid.
 	vector<int>* buckets;
 	vector<bool>* bucketsFilledFlags;
+	
+
 };
 
 #endif

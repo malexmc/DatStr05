@@ -1,11 +1,14 @@
 // HashTable.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
 #include "HashTableBase.h"
 #include "HashTableLinProbe.h"
+#include "HashTableDoubleHash.h"
+#include "HashTableQuadratic.h"
+#include "HashTableChaining.h"
 
 #include <iostream>
+#include <limits>
 #include <stdlib.h>
 #include <time.h>
 
@@ -17,29 +20,46 @@ int main(int argc, char* argv[])
 	// <will>
 	// get the collision resolution scheme
 	cout << "Select the collision resolution scheme:" << endl;
-	cout << " 1: Double Hashing" << endl;
-	cout << " 2: Quadratic Probing" << endl;
-	cout << " 3: Seprate Chaining" << endl;
+	cout << " 1: Linear Probing (Single Hashing)" << endl;
+	cout << " 2: Linear Probing (Double Hashing)" << endl;
+	cout << " 3: Quadratic Probing" << endl;
+	cout << " 4: Seprate Chaining" << endl;
 	cout << " :";
 
 	// <will>
 	// get the input
 	int collisionResolutionScheme = 0;
 	cin >> collisionResolutionScheme;
-	if (cin.fail() || collisionResolutionScheme < 1 || collisionResolutionScheme > 3)
+	if (cin.fail() || collisionResolutionScheme < 1 || collisionResolutionScheme > 4)
 	{
 		return 1;
 	}
 
 	// <will>
 	// get the max load ratio
-	cout << endl << "Enter the max laod ratio (0 to 1):" << endl;
+	cout << endl << "Enter the max load ratio (0 to 1):" << endl;
 	double maxLoadRatio = getDoubleFromUser(0.0, 1.0);
 
 	// <will>
 	// create the hash table
 	int numberOfBuckets = 23;
-	HashTableBase* hashTable = new HashTableLinProbe(numberOfBuckets);
+	
+	// <alex>
+	// Make our hash table pointer then decide what hash table to create
+	// based on the user input
+	HashTableBase* hashTable;
+	switch(collisionResolutionScheme){
+	    case 1: hashTable = new HashTableLinProbe(numberOfBuckets);
+	            break;
+	    case 2: hashTable = new HashTableDoubleHash(numberOfBuckets);
+	            break;
+	    case 3: hashTable = new HashTableQuadratic(numberOfBuckets);
+	            break;
+	    case 4: hashTable = new HashTableChaining(numberOfBuckets);
+                break;
+	}
+	
+	//HashTableBase* hashTable = new HashTableLinProbe(numberOfBuckets);
 
 	// <will>
 	// have user fill hash table
@@ -50,7 +70,8 @@ int main(int argc, char* argv[])
 		bool insertSuccess = hashTable->insertKey(newKey);
 		if (!insertSuccess)
 		{
-			cout << newKey << " could not be inserted as it is a duplicate entry." << endl;
+			cout << "**"<< newKey << " could not be inserted as it is a duplicate entry." 
+			        << endl;
 		}
 	}
 
@@ -87,6 +108,8 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+
+
 // <will>
 // Gets a double value from the user
 double getDoubleFromUser(double lowerBound, double higherBound)
@@ -98,7 +121,7 @@ double getDoubleFromUser(double lowerBound, double higherBound)
 	{
 		cout << "Please enter an floating point number from " << lowerBound << " to " << higherBound << "." << endl << " :";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 		cin >> response;
 	}
 	return response;
@@ -115,7 +138,7 @@ int getIntegerFromUser()
 	{
 		cout << "Please enter an integer." << endl << " :";
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
 		cin >> response;
 	}
 	return response;

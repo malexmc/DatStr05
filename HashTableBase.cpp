@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "HashTableBase.h"
 
 #include <iomanip>
@@ -9,15 +9,18 @@ using namespace std;
 
 // <will>
 // Base class constructor. Instantiates the buckets vector<int> and 
-// bucketsFilledFlags vector<bool>.
+// bucketsFilledFlags vector<bool>. 
 HashTableBase::HashTableBase(int numberOfBuckets)
 {
 	this->numberOfBuckets = numberOfBuckets;
 	this->entries = 0;
 
-	buckets = new vector<int>(numberOfBuckets);
+  buckets = new vector<int>(numberOfBuckets);
+	
 	bucketsFilledFlags = new vector<bool>(numberOfBuckets);
 }
+
+
 
 // <will>
 // Base class desctructor. Deletes the buckets vector<int> and the
@@ -50,7 +53,7 @@ void HashTableBase::printTable()
 		}
 		else
 		{
-			cout << "---" << endl;
+			cout << "(Empty)" << endl;
 		}
 	}
 }
@@ -72,6 +75,6 @@ int HashTableBase::getHashForKey(int key)
 	{
 		key += numberOfBuckets;
 	}
-
+    cout << key << " % " << numberOfBuckets << " = " << key%numberOfBuckets << endl;
 	return key % numberOfBuckets;
 }
