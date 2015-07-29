@@ -32,13 +32,15 @@ bool HashTableLinProbe::insertKey(int key)
 
 		// <will>
 		// if the key at this location is equal to the current key, break out early
-		if ((*bucketsFilledFlags)[bucket] && (*buckets)[bucket] == key)
+		HashTableBase::totalComparisons++;
+                if ((*bucketsFilledFlags)[bucket] && (*buckets)[bucket] == key)
 		{
 			return false;
 		}
 
 		// <will>
 		// insert the value here if possible
+                HashTableBase::totalComparisons++;
 		if ((*bucketsFilledFlags)[bucket] == false)
 		{
 			(*bucketsFilledFlags)[bucket] = true;
